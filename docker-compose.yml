@@ -1,0 +1,33 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    container_name: backend_cliff
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend/db:/app/db
+    networks:
+      - app-network
+    environment:
+      - NAME=CliffReynard
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
+    container_name: frontend_cliff
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend:/app
+    networks:
+      - app-network
+    environment:
+      - VITE_BACKEND_URL=http://backend_cliff:3000
+      - SUBDOMAIN=CliffReynard
+
+networks:
+  app-network:
+    driver: bridge
