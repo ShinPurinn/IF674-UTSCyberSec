@@ -9,7 +9,7 @@ app.use(express.json());
 
 // Secure CORS configuration
 app.use(cors({
-  origin: 'http://localhost:5173', // Replace with your frontend domain in production
+  origin: 'http://20.167.41.148:80/',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
   credentials: true
